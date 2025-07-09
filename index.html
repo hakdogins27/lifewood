@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lifewood - Smart Data. Smarter World.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+  <!-- Canvas for the AI background animation -->
+  <canvas id="particle-canvas"></canvas>
+
+  <header class="header">
+    <nav class="navbar container">
+      <a href="index.html" class="logo">
+        <svg class="logo-icon" width="24" height="32" viewBox="0 0 24 42" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 0L23.5962 10.5V31.5L12 42L0.403847 31.5V10.5L12 0Z" fill="currentColor"/></svg>
+        <span class="logo-text">lifewood</span>
+      </a>
+      <ul id="desktop-nav" class="nav-menu">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="about.html" class="nav-link">About</a></li>
+        <li><a href="services.html" class="nav-link">Services</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+      <a href="contact.html" class="btn btn-primary nav-cta">Get Started</a>
+      <button id="mobile-menu-button" class="mobile-menu-toggle"><svg class="icon-menu" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg></button>
+    </nav>
+  </header>
+
+  <div id="mobile-menu" class="mobile-nav">
+      <div class="mobile-nav-header"><button id="close-menu-button" class="mobile-menu-toggle"><svg class="icon-close" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button></div>
+      <ul class="mobile-nav-links">
+          <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+          <li><a href="about.html" class="mobile-nav-link">About</a></li>
+          <li><a href="services.html" class="mobile-nav-link">Services</a></li>
+          <li><a href="contact.html" class="mobile-nav-link">Contact</a></li>
+      </ul>
+  </div>
+
+  <main>
+    <section id="home" class="hero-section">
+      <div class="container hero-container">
+        <div class="hero-content">
+            <h1 id="hero-title" class="hero-title"></h1>
+            <p class="hero-subtitle">We provide the high-quality, structured data that powers the world's most advanced AI systems. Your vision, fueled by our data expertise.</p>
+            <a href="services.html" class="btn btn-primary">Our Solutions</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="content-section fade-in-section section-bg">
+        <div class="container text-center">
+            <h2 class="section-title">The Foundation for Reliable AI</h2>
+            <p class="section-subtitle">At Lifewood, we manage the complete data lifecycle to ensure your AI models perform with accuracy and consistency. From sourcing diverse datasets to delivering structured, labeled information, we are your trusted partner in data excellence.</p>
+            <div class="stats-grid">
+                <div class="stat-card"><p class="stat-number">50+</p><p class="stat-label">Languages Supported</p></div>
+                <div class="stat-card"><p class="stat-number">24/7</p><p class="stat-label">Global Operations</p></div>
+                <div class="stat-card"><p class="stat-number">100%</p><p class="stat-label">Human-Powered Quality</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section fade-in-section">
+        <div class="container feature-section">
+            <div class="feature-image">
+                <img src="img/Genea.png" alt="Archival documents and historical records for genealogy research">
+            </div>
+            <div class="feature-content">
+                <h2 class="section-title" style="text-align: left;">Powering Historical Discovery</h2>
+                <p class="section-subtitle" style="text-align: left; max-width: none;">For over 20 years, Lifewood has been at the forefront of digitizing and structuring the world's historical records. We transform vast archives of genealogical data—from handwritten census records to delicate parish documents—into searchable, structured information.</p>
+                <p style="color: var(--brand-light-text-muted); line-height: 1.7;">Our expertise powers the leading family history platforms, enabling millions of users to uncover their past. By applying advanced data processing and human-powered quality assurance, we make historical discovery more accessible and accurate than ever before.</p>
+                <a href="services.html" class="btn btn-secondary" style="margin-top: 1rem;">Explore Our Data Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW CORE SERVICES SECTION -->
+    <section class="content-section fade-in-section section-bg">
+        <div class="container text-center">
+            <h2 class="section-title">Our Core Data Services</h2>
+            <p class="section-subtitle">From physical documents to digital streams, we handle the entire data journey with precision and care.</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
+                    </div>
+                    <h3>Data Entry & Capture</h3>
+                    <p>We specialize in high-volume data entry from a variety of sources, including handwritten forms and scanned documents, ensuring over 99.9% accuracy.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                    </div>
+                    <h3>Document Scanning</h3>
+                    <p>Our state-of-the-art facilities provide secure, high-quality scanning for documents of all types, from standard office paper to delicate historical archives.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-card-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    </div>
+                    <h3>Digital Mailroom</h3>
+                    <p>Automate your incoming mail process. We receive, scan, and route your physical mail to the correct digital workflows, increasing efficiency and reducing overhead.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END OF NEW SECTION -->
+
+    <!-- NEW ADVANTAGE SECTION -->
+    <section class="content-section fade-in-section">
+        <div class="container text-center">
+            <h2 class="section-title">The Lifewood Advantage</h2>
+            <p class="section-subtitle">We are more than a vendor; we are a trusted partner committed to your success.</p>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <p class="stat-number">SOC 2</p>
+                    <p class="stat-label">Certified Security</p>
+                </div>
+                <div class="stat-card">
+                    <p class="stat-number">99.9%</p>
+                    <p class="stat-label">Guaranteed Accuracy</p>
+                </div>
+                <div class="stat-card">
+                    <p class="stat-number">Global</p>
+                    <p class="stat-label">Secure Facilities</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END OF NEW SECTION -->
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-container">
+      <div class="footer-info">
+        <a href="index.html" class="logo footer-logo">
+            <svg class="logo-icon" width="24" height="42" viewBox="0 0 24 42" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 0L23.5962 10.5V31.5L12 42L0.403847 31.5V10.5L12 0Z" fill="currentColor"/></svg>
+            <span class="logo-text">lifewood</span>
+        </a>
+        <p class="footer-text">© 2024 Lifewood. All rights reserved.</p>
+      </div>
+      <div class="footer-social">
+        <a href="#" class="social-link" aria-label="Twitter"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M22.46,6C21.71,6.33 20.91,6.55 20.06,6.66C20.94,6.13 21.6,5.32 21.9,4.36C21.08,4.86 20.18,5.23 19.22,5.43C18.44,4.61 17.28,4 16,4C13.67,4 11.77,5.9 11.77,8.23C11.77,8.57 11.81,8.91 11.89,9.23C8.28,9.05 5.1,7.38 2.9,4.79C2.53,5.42 2.32,6.17 2.32,6.97C2.32,8.46 3.08,9.77 4.21,10.54C3.53,10.52 2.89,10.33 2.33,10.02C2.33,10.04 2.33,10.05 2.33,10.07C2.33,12.17 3.8,13.92 5.75,14.33C5.4,14.42 5.02,14.46 4.63,14.46C4.36,14.46 4.1,14.44 3.85,14.39C4.4,16.1 5.96,17.31 7.82,17.35C6.38,18.45 4.58,19.13 2.62,19.13C2.28,19.13 1.95,19.11 1.62,19.07C3.52,20.32 5.78,21.06 8.21,21.06C16,21.06 20.4,14.48 20.4,8.78C20.4,8.58 20.4,8.38 20.39,8.18C21.25,7.55 21.94,6.82 22.46,6Z"/></svg></a>
+        <a href="#" class="social-link" aria-label="LinkedIn"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3H19M18.5,18.5V13.2A3.26,3.26 0 0,0 15.24,9.94C14.39,9.94 13.4,10.43 13,11.25V10.13H10.13V18.5H13V13.57C13,12.8 13.09,12.03 14.17,12.03C15.24,12.03 15.24,12.97 15.24,13.64V18.5H18.5M6.88,8.56A1.68,1.68 0 0,0 8.56,6.88C8.56,6 7.78,5.2 6.88,5.2A1.68,1.68 0 0,0 5.2,6.88C5.2,7.78 6,8.56 6.88,8.56M8.27,18.5V10.13H5.5V18.5H8.27Z"/></svg></a>
+      </div>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
