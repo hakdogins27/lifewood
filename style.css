@@ -396,7 +396,7 @@ section { padding-block: clamp(4rem, 10vw, 8rem); text-align: center; position: 
   .mobile-menu-toggle { display: none; }
   .nav-menu { display: flex; }
   .hero-container { flex-direction: row; justify-content: space-between; align-items: center; }
-  .hero-content { text-align: left; flex: 1; }
+  .hero-content { text-align: left; font-size: 20px; flex: 1; }
   /* Hero image placeholder is removed, so no need for this rule */
   /* .hero-image-placeholder { flex: 1; max-width: 50%; } */
   .bento-grid { grid-template-columns: repeat(4, 1fr); grid-template-rows: auto; grid-template-areas: "large large stat1 service1" "large large stat2 service2" "service3 service4 service5 service6"; }
