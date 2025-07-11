@@ -15,7 +15,6 @@
       --brand-accent-saffron: #FFB347;
       --brand-white: #ffffff;
       --brand-sea-salt: #F9F7F7;
-      /* Adjusted for dark theme */
       --brand-light-text-muted: rgba(249, 247, 247, 0.7);
       --red-600: #dc2626;
     }
@@ -25,29 +24,26 @@
     body {
       margin: 0;
       font-family: 'Manrope', sans-serif;
-      /* --- MODIFIED FOR DARK THEME --- */
       background-color: var(--brand-dark-serpent);
       color: var(--brand-sea-salt);
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
 
-    /* --- NEW STYLE FOR CANVAS BACKGROUND --- */
     #particle-canvas {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100vh;
-      z-index: -1; /* Places canvas behind all content */
+      z-index: -1;
     }
 
     /* ------------------- */
     /* HEADER & NAVIGATION */
     /* ------------------- */
     .header {
-      /* --- MODIFIED HEADER COLOR --- */
-      background-color: rgba(25, 25, 25, 0.7); /* Changed from dark green to dark charcoal */
+      background-color: rgba(25, 25, 25, 0.7);
       backdrop-filter: blur(10px);
       position: sticky;
       top: 0;
@@ -75,18 +71,16 @@
       font-size: 1.875rem;
       font-weight: 800;
       letter-spacing: -0.5px;
-      color: #f5eedb; /* Changed for better contrast */
+      color: #f5eedb;
     }
 
     .nav-menu { display: none; list-style: none; margin: 0; padding: 0; align-items: center; gap: 2rem; }
-    /* --- MODIFIED FOR DARK THEME --- */
     .nav-link { position: relative; text-decoration: none; color: var(--brand-sea-salt); font-weight: 500; transition: color 0.3s ease; padding-bottom: 4px; }
     .nav-link:hover { color: var(--brand-accent-saffron); }
     .nav-link.active { color: var(--brand-accent-saffron); border-bottom: 2px solid var(--brand-accent-saffron); }
     .nav-cta { display: none; }
     .mobile-menu-toggle { display: block; background: none; border: none; cursor: pointer; color: var(--brand-sea-salt); }
     .icon-menu, .icon-close { width: 2rem; height: 2rem; }
-    /* --- MODIFIED FOR DARK THEME --- */
     .mobile-nav { display: none; position: fixed; inset: 0; background-color: rgba(19, 48, 32, 0.95); backdrop-filter: blur(8px); z-index: 100; }
     .mobile-nav.is-open { display: block; }
     .mobile-nav-header { display: flex; justify-content: flex-end; padding: 1.5rem; }
@@ -108,84 +102,33 @@
     .container { max-width: 1200px; margin-inline: auto; padding-inline: 1.5rem; }
     main { padding-top: 80px; }
     section { padding-block: clamp(4rem, 10vw, 8rem); text-align: center; position: relative; }
-
-    /* --- MODIFIED SECTION BACKGROUND --- */
     .section-bg {
-      background-color: #1a2c23; /* A dark, desaturated green-gray for better harmony */
+      background-color: #1a2c23;
       border-top: 1px solid rgba(249, 247, 247, 0.1);
       border-bottom: 1px solid rgba(249, 247, 247, 0.1);
     }
-
-    .page-header-section { padding-bottom: 2rem; }
-    /* --- MODIFIED FOR DARK THEME --- */
-    .page-title, .section-title, .content-block h2, .service-list-item h2, .contact-info h2 { font-family: 'Manrope', sans-serif; font-weight: 600; color: var(--brand-sea-salt); }
-    .page-title { font-size: clamp(2.5rem, 6vw, 3.5rem); margin: 0; }
-    .section-title { font-size: clamp(2rem, 5vw, 2.5rem); margin-bottom: 1rem; }
-    .page-subtitle, .section-subtitle { font-size: 1.25rem; color: var(--brand-light-text-muted); max-width: 48rem; margin-inline: auto; line-height: 1.7; }
-
-    /* --- MODIFIED HERO SECTION ALIGNMENT --- */
+    .section-title { font-size: clamp(2rem, 5vw, 2.5rem); margin-bottom: 1rem; color: var(--brand-sea-salt); font-weight: 600; }
+    .section-subtitle { font-size: 1.25rem; color: var(--brand-light-text-muted); max-width: 48rem; margin-inline: auto; line-height: 1.7; }
     .hero-section {
       min-height: calc(100vh - 80px);
       display: flex;
-      align-items: flex-start; /* Changed from center to flex-start */
+      align-items: flex-start;
       justify-content: center;
-      padding-top: clamp(4rem, 15vh, 10rem); /* Added significant, responsive top padding */
+      padding-top: clamp(4rem, 15vh, 10rem);
       padding-bottom: 2rem;
     }
-
     .hero-container { display: flex; flex-direction: column; align-items: center; gap: 2rem; }
     .hero-content { text-align: center; }
-    /* --- MODIFIED FOR DARK THEME --- */
     .hero-title { font-family: 'Manrope', sans-serif; font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 600; letter-spacing: -1px; margin: 0 0 1.5rem 0; color: var(--brand-sea-salt); }
     .hero-subtitle { margin-bottom: 2.5rem; }
-    .hero-image-placeholder img { max-width: 100%; height: auto; border-radius: 1rem; }
-
+    
     /* ------------------- */
-    /* STATS GRID & BENTO GRID */
+    /* STATS & SERVICES GRIDS */
     /* ------------------- */
     .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-top: 3rem; }
     .stat-card { text-align: center; }
     .stat-number { font-size: clamp(2.5rem, 6vw, 3.5rem); font-weight: 700; color: var(--brand-accent-saffron); margin: 0; }
     .stat-label { font-size: 1rem; color: var(--brand-light-text-muted); margin-top: 0.5rem; }
-    .grid-section-wrapper { padding-top: 0; }
-    .bento-grid { display: grid; gap: 1rem; }
-    /* --- MODIFIED FOR DARK THEME --- */
-    .grid-card { background: rgba(255, 255, 255, 0.05); padding: 1.5rem; border-radius: 1rem; border: 1px solid rgba(249, 247, 247, 0.1); backdrop-filter: blur(10px); transition: all 0.3s ease; text-align: left; }
-    .grid-card:hover { border-color: rgba(249, 247, 247, 0.3); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); }
-    .card-title { font-size: clamp(1.5rem, 4vw, 2rem); margin: 0 0 1rem 0; }
-    .card-subtitle { font-size: 1.25rem; margin: 0; }
-    .card-text { max-width: none; font-size: 1rem; color: var(--brand-light-text-muted); line-height: 1.7; }
-    .card-service { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 0.75rem; }
-    .service-icon { color: var(--brand-accent-saffron); background-color: rgba(255, 179, 71, 0.1); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
-
-    /* ------------------- */
-    /* CONTENT PAGES */
-    /* ------------------- */
-    .content-section { padding-top: 2rem; }
-    .content-container, .services-list, .contact-layout { max-width: 800px; text-align: left; }
-    .content-image { width: 100%; height: auto; border-radius: 1rem; margin-bottom: 2rem; }
-    .content-block { margin-bottom: 2rem; }
-    /* --- MODIFIED FOR DARK THEME --- */
-    .content-block h2 { font-size: 1.75rem; color: var(--brand-accent-saffron); margin: 0 0 1rem 0; }
-    .content-block p, .content-block li { color: var(--brand-light-text-muted); line-height: 1.7; }
-    .content-block ul { list-style: none; padding-left: 0; }
-    .content-block li { padding-left: 1.5rem; position: relative; margin-bottom: 0.5rem; }
-    .content-block li::before { content: '■'; position: absolute; left: 0; color: var(--brand-accent-saffron); font-size: 0.8rem; }
-    .service-list-item { border-bottom: 1px solid rgba(249, 247, 247, 0.1); padding-bottom: 2rem; margin-bottom: 2rem; display: flex; flex-direction: column; gap: 1.5rem; }
-    .service-list-item:last-child { border-bottom: none; margin-bottom: 0; }
-    .service-list-item h2 { font-size: 1.75rem; color: var(--brand-accent-saffron); margin: 0 0 0.5rem 0; }
-    .service-list-item p { color: var(--brand-light-text-muted); line-height: 1.7; margin: 0; }
-    .img-placeholder img { width: 100%; border-radius: 0.5rem; }
-    .contact-layout { display: grid; gap: 3rem; max-width: 1000px; }
-    .contact-info h2 { font-size: 1.75rem; color: var(--brand-accent-saffron); margin: 0 0 1rem 0; }
-    .contact-info p { line-height: 1.7; color: var(--brand-light-text-muted); }
-    .contact-info a { color: var(--brand-accent-saffron); text-decoration: none; transition: color 0.3s; }
-    .contact-info a:hover { color: #E79651; }
-    .info-block { margin-top: 1.5rem; }
-    .info-block h3 { font-size: 1.25rem; color: var(--brand-sea-salt); margin: 0 0 0.25rem 0; }
-    .info-block p { margin: 0; }
-
-    /* --- NEW: FEATURE SECTION STYLES --- */
     .feature-section {
       display: flex;
       flex-direction: column;
@@ -193,146 +136,28 @@
       gap: 2rem;
       text-align: center;
     }
-
-    .feature-image {
-      flex: 1;
-      max-width: 450px;
-    }
-
-    .feature-image img {
-      width: 100%;
-      height: auto;
-      border-radius: 1rem;
-    }
-
-    .feature-content {
-      flex: 1;
-      text-align: left;
-    }
-
-    /* --- NEW: SERVICES GRID STYLES (MODIFIED FOR IMAGES) --- */
+    .feature-image { flex: 1; max-width: 450px; }
+    .feature-image img { width: 100%; height: auto; border-radius: 1rem; }
+    .feature-content { flex: 1; text-align: left; }
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2rem;
       margin-top: 3rem;
-      text-align: left;
+      text-align: center;
     }
-
     .service-card {
       background-color: rgba(255, 255, 255, 0.05);
       border-radius: 1rem;
       border: 1px solid rgba(249, 247, 247, 0.1);
       transition: all 0.3s ease;
-      overflow: hidden; /* Important: Keeps the image within the rounded corners */
+      padding: 2rem;
     }
-
     .service-card:hover {
       transform: translateY(-5px);
       border-color: var(--brand-accent-saffron);
     }
-
-    .service-card-image {
-      width: 100%;
-      height: 180px;
-      object-fit: cover; /* Ensures image covers the area without distortion */
-      display: block;
-    }
-
-    .service-card-content {
-      padding: 2rem; /* Padding for the text content below the image */
-    }
-
-    .service-card h3 {
-      font-size: 1.5rem;
-      margin: 0 0 0.5rem 0;
-      color: var(--brand-sea-salt);
-    }
-
-    .service-card p {
-      color: var(--brand-light-text-muted);
-      line-height: 1.7;
-      margin: 0;
-    }
-
-    /* --- NEW: TIMELINE STYLES --- */
-    .timeline {
-      margin-top: 3rem;
-      position: relative;
-      max-width: 600px;
-      margin-inline: auto;
-    }
-
-    .timeline::after {
-      content: '';
-      position: absolute;
-      width: 2px;
-      background-color: rgba(255, 179, 71, 0.3);
-      top: 0;
-      bottom: 0;
-      left: 50%;
-      margin-left: -1px;
-    }
-
-    .timeline-item {
-      padding: 1rem 2.5rem;
-      position: relative;
-      width: 50%;
-    }
-
-    .timeline-item:nth-child(odd) {
-      left: 0;
-      text-align: right;
-      padding-right: 3rem;
-    }
-
-    .timeline-item:nth-child(even) {
-      left: 50%;
-      text-align: left;
-      padding-left: 3rem;
-    }
-
-    .timeline-item::after {
-      content: '';
-      position: absolute;
-      width: 16px;
-      height: 16px;
-      right: -8px;
-      background-color: var(--brand-dark-serpent);
-      border: 3px solid var(--brand-accent-saffron);
-      top: 20px;
-      border-radius: 50%;
-      z-index: 1;
-    }
-
-    .timeline-item:nth-child(even)::after {
-      left: -8px;
-    }
-
-    .timeline-content h3 {
-      margin: 0 0 0.5rem 0;
-      color: var(--brand-accent-saffron);
-      font-size: 1.25rem;
-    }
-
-    .timeline-content p {
-      margin: 0;
-      color: var(--brand-light-text-muted);
-    }
-
-    /* --- NEW: BENEFITS GRID STYLES --- */
-    .benefits-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-
-    .benefit-card {
-      text-align: center;
-    }
-
-    .benefit-card-icon {
+    .service-card-icon {
       font-size: 2.5rem;
       color: var(--brand-accent-saffron);
       margin-bottom: 1rem;
@@ -344,46 +169,27 @@
       align-items: center;
       justify-content: center;
     }
-
-    .benefit-card h3 {
+    .service-card h3 {
       font-size: 1.5rem;
       margin: 0 0 0.5rem 0;
       color: var(--brand-sea-salt);
     }
-
-    .benefit-card p {
+    .service-card p {
       color: var(--brand-light-text-muted);
       line-height: 1.7;
       margin: 0;
     }
 
     /* ------------------- */
-    /* FORM STYLES */
-    /* ------------------- */
-    /* --- MODIFIED FOR DARK THEME --- */
-    .contact-form { background-color: rgba(255, 255, 255, 0.05); padding: 2rem; border-radius: 1rem; border: 1px solid rgba(249, 247, 247, 0.1); }
-    .form-grid { display: grid; gap: 1.5rem; }
-    .form-group { display: flex; flex-direction: column; }
-    .form-group label { margin-bottom: 0.5rem; font-weight: 500; color: var(--brand-light-text-muted); }
-    .form-group input, .form-group textarea { width: 100%; padding: 0.75rem 1rem; background-color: rgba(0,0,0,0.2); border: 1px solid rgba(249, 247, 247, 0.2); border-radius: 0.375rem; color: var(--brand-sea-salt); box-sizing: border-box; font-family: 'Manrope', sans-serif; font-size: 1rem; }
-    .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--brand-accent-saffron); box-shadow: 0 0 0 2px rgba(255, 179, 71, 0.2); }
-    .form-submit { margin-top: 2rem; }
-    .form-feedback { margin-bottom: 1rem; text-align: center; font-weight: 500; padding: 0.75rem; border-radius: 0.375rem; display: none; }
-    .form-feedback.error { color: var(--red-600); background-color: rgba(220, 38, 38, 0.1); display: block; }
-    .form-feedback.success { color: var(--brand-castleton-green); background-color: rgba(4, 98, 65, 0.1); display: block; }
-
-    /* ------------------- */
     /* FOOTER */
     /* ------------------- */
-    /* --- MODIFIED FOOTER TO MATCH HEADER --- */
     .footer {
-      background-color: rgba(25, 25, 25, 0.7); /* Match header color */
-      backdrop-filter: blur(10px); /* Match header blur effect */
+      background-color: rgba(25, 25, 25, 0.7);
+      backdrop-filter: blur(10px);
       border-top: 1px solid rgba(249, 247, 247, 0.1);
       padding: 3rem 0;
       text-align: center;
     }
-
     .footer-container { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
     .footer-logo { justify-content: center; }
     .footer-text { margin: 0; font-size: 0.875rem; color: var(--brand-light-text-muted); }
@@ -393,50 +199,22 @@
     .social-link svg { width: 1.5rem; height: 1.5rem; }
 
     /* ------------------- */
-    /* ANIMATIONS & RESPONSIVENESS */
+    /* RESPONSIVENESS */
     /* ------------------- */
-    .fade-in-section { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
-    .fade-in-section.visible { opacity: 1; transform: translateY(0); }
-
     @media (min-width: 768px) {
       .nav-cta { display: inline-block; }
       .mobile-menu-toggle { display: none; }
       .nav-menu { display: flex; }
       .hero-container { flex-direction: row; justify-content: space-between; align-items: center; }
-      .hero-content { text-align: left; font-size: 20px; flex: 1; }
-      /* Hero image placeholder is removed, so no need for this rule */
-      /* .hero-image-placeholder { flex: 1; max-width: 50%; } */
-      .bento-grid { grid-template-columns: repeat(4, 1fr); grid-template-rows: auto; grid-template-areas: "large large stat1 service1" "large large stat2 service2" "service3 service4 service5 service6"; }
-      .card-large { grid-area: large; }
-      .card-stat:nth-of-type(2) { grid-area: stat1; }
-      .card-stat:nth-of-type(3) { grid-area: stat2; }
-      .card-service:nth-of-type(4) { grid-area: service1; }
-      .card-service:nth-of-type(5) { grid-area: service2; }
-      .card-service:nth-of-type(6) { grid-area: service3; }
-      .card-service:nth-of-type(7) { grid-area: service4; }
-      .card-service:nth-of-type(8) { grid-area: service5; }
-      .card-service:nth-of-type(9) { grid-area: service6; }
-      .service-list-item { flex-direction: row; align-items: center; justify-content: space-between; }
-      .service-content { flex: 2; }
-      .img-placeholder { flex: 1; text-align: right; }
-      .contact-layout { grid-template-columns: 1fr 1.5fr; align-items: start; }
-      .form-grid { grid-template-columns: 1fr 1fr; }
+      .hero-content { text-align: left; }
       .footer-container { flex-direction: row; justify-content: space-between; }
       .feature-section {
-        flex-direction: row; /* Side-by-side on larger screens */
+        flex-direction: row;
         text-align: left;
         gap: 4rem;
       }
     }
-
-    @media (min-width: 1024px) {
-      .bento-grid { grid-template-areas: "large large stat1 stat2" "large large service1 service2" "service3 service4 service5 service6"; }
-    }
   </style>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <!-- <link href="style.css" rel="stylesheet"> This is commented out as the styles are embedded -->
 </head>
 <body>
   <!-- Canvas for the AI background animation -->
@@ -449,7 +227,7 @@
         <span class="logo-text">lifewood</span>
       </a>
       <ul id="desktop-nav" class="nav-menu">
-        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="index.html" class="nav-link active">Home</a></li>
         <li><a href="about.html" class="nav-link">About</a></li>
         <li><a href="services.html" class="nav-link">Services</a></li>
         <li><a href="contact.html" class="nav-link">Contact</a></li>
@@ -473,7 +251,7 @@
     <section id="home" class="hero-section">
       <div class="container hero-container">
         <div class="hero-content">
-            <h1 id="hero-title" class="hero-title"></h1>
+            <h1 id="hero-title" class="hero-title">Smart Data. Smarter World.</h1>
             <p class="hero-subtitle">We provide the high-quality, structured data that powers the world's most advanced AI systems. Your vision, fueled by our data expertise. From vast historical archives to real-time data streams, we provide the clean, structured, and ethically-sourced data that powers the world's most advanced AI. We are more than a vendor; we are the data partner that fuels your vision and accelerates your journey from concept to reality.</p>
             <a href="services.html" class="btn btn-primary">Our Solutions</a>
         </div>
@@ -506,7 +284,7 @@
         </div>
     </section>
 
-    <!-- NEW CORE SERVICES SECTION -->
+    <!-- CORE SERVICES SECTION -->
     <section class="content-section fade-in-section section-bg">
         <div class="container text-center">
             <h2 class="section-title">Our Core Data Services</h2>
@@ -536,9 +314,8 @@
             </div>
         </div>
     </section>
-    <!-- END OF NEW SECTION -->
-
-    <!-- NEW ADVANTAGE SECTION -->
+    
+    <!-- ADVANTAGE SECTION -->
     <section class="content-section fade-in-section">
         <div class="container text-center">
             <h2 class="section-title">The Lifewood Advantage</h2>
@@ -559,8 +336,6 @@
             </div>
         </div>
     </section>
-    <!-- END OF NEW SECTION -->
-
   </main>
 
   <footer class="footer">
@@ -573,25 +348,22 @@
             <p class="footer-text">© 2025 Lifewood. All rights reserved.</p>
         </div>
         <div class="footer-social">
-            <!-- YouTube -->
             <a href="https://www.youtube.com/@LifewoodDataTechnology" target="_blank" class="social-link" aria-label="YouTube">
                 <svg fill="currentColor" viewBox="0 0 24 24"><path d="M10,15L15.19,12L10,9V15M21.56,7.17C21.69,7.64 21.78,8.27 21.84,9.07C21.91,9.87 21.94,10.56 21.94,11.16L22,12C22,12.84 21.94,13.5 21.88,14.08C21.79,14.85 21.69,15.5 21.56,15.97C21.31,16.9 20.73,17.69 19.96,17.96C19.43,18.11 18.22,18.26 16.38,18.34C14.54,18.42 12.97,18.44 12,18.44C11.03,18.44 9.46,18.42 7.62,18.34C5.78,18.26 4.57,18.11 4.04,17.96C3.27,17.69 2.69,16.9 2.44,15.97C2.31,15.5 2.21,14.85 2.16,14.08C2.06,13.5 2,12.84 2,12L2.06,11.16C2.06,10.56 2.09,9.87 2.16,9.07C2.22,8.27 2.31,7.64 2.44,7.17C2.69,6.24 3.27,5.45 4.04,5.18C4.57,5.03 5.78,4.88 7.62,4.8C9.46,4.72 11.03,4.7 12,4.7C12.97,4.7 14.54,4.72 16.38,4.8C18.22,4.88 19.43,5.03 19.96,5.18C20.73,5.45 21.31,6.24 21.56,7.17Z"/></svg>
             </a>
-            <!-- Facebook -->
             <a href="https://www.facebook.com/LifewoodPH" target="_blank" class="social-link" aria-label="Facebook">
                 <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10.01 10.01 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z"/></svg>
             </a>
-            <!-- LinkedIn -->
-            <a href="https://ph.linkedin.com/company/lifewood-data-technology-ltd. target="_blank" class="social-link" aria-label="LinkedIn">
+            <a href="https://ph.linkedin.com/company/lifewood-data-technology-ltd" target="_blank" class="social-link" aria-label="LinkedIn">
                 <svg fill="currentColor" viewBox="0 0 24 24"><path d="M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3H19M18.5,18.5V13.2A3.26,3.26 0 0,0 15.24,9.94C14.39,9.94 13.4,10.43 13,11.25V10.13H10.13V18.5H13V13.57C13,12.8 13.09,12.03 14.17,12.03C15.24,12.03 15.24,12.97 15.24,13.64V18.5H18.5M6.88,8.56A1.68,1.68 0 0,0 8.56,6.88C8.56,6 7.78,5.2 6.88,5.2A1.68,1.68 0 0,0 5.2,6.88C5.2,7.78 6,8.56 6.88,8.56M8.27,18.5V10.13H5.5V18.5H8.27Z"/></svg>
             </a>
-            <!-- Website -->
             <a href="https://www.lifewood.com/" target="_blank" class="social-link" aria-label="Website">
                 <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4A8,8 0 0,1 20,12A8,8 0 0,1 12,20M16.9,15.6C16.5,14.9 16.2,14.2 15.9,13.5C16.3,12.8 16.6,12 16.9,11.3C16.8,10.6 16.8,9.9 16.8,9.2C17.1,8.5 17.5,7.8 17.9,7.1C17.2,7 16.5,6.9 15.8,6.9C15.1,7.2 14.4,7.6 13.8,8.1L12,7.2L10.2,8.1C9.6,7.6 8.9,7.2 8.2,6.9C7.5,6.9 6.8,7 6.1,7.1C6.5,7.8 6.9,8.5 7.2,9.2C7.2,9.9 7.2,10.6 7.1,11.3C7.4,12 7.7,12.8 8.1,13.5C7.8,14.2 7.5,14.9 7.1,15.6C7.8,15.8 8.5,15.9 9.2,15.9C9.9,15.6 10.6,15.2 11.2,14.7L12,15.2L12.8,14.7C13.4,15.2 14.1,15.6 14.8,15.9C15.5,15.9 16.2,15.8 16.9,15.6Z"/></svg>
             </a>
         </div>
     </div>
   </footer>
+  
   <script src="script.js"></script>
 </body>
 </html>
