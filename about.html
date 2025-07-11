@@ -10,7 +10,7 @@
   <style>
     /* 
       This is the complete and corrected style block.
-      It includes the fix for the timeline AND the styles for the button.
+      It includes the new styles for the SVG neurolink timeline.
     */
     
     /* ------------------- */
@@ -60,7 +60,7 @@
     .mobile-nav-link { font-family: 'Manrope', sans-serif; font-size: 1.75rem; font-weight: 600; color: var(--brand-sea-salt); text-decoration: none; }
 
     /* ------------------- */
-    /* BUTTONS (RESTORED) */
+    /* BUTTONS */
     /* ------------------- */
     .btn { display: inline-block; padding: 0.75rem 2rem; border-radius: 0.375rem; text-decoration: none; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 1rem; transition: all 0.3s ease; border: 1px solid; }
     .btn-primary { background-color: var(--brand-accent-saffron); border-color: var(--brand-accent-saffron); color: var(--brand-dark-serpent); }
@@ -96,27 +96,42 @@
     .feature-image img { width: 100%; height: auto; border-radius: 1rem; }
     .feature-content { flex: 1; text-align: left; }
 
-    /* --- TIMELINE STYLES - DEFINITIVE FIX --- */
+    /* --- NEUROLINK TIMELINE STYLES --- */
     .timeline {
-      position: relative;
+      position: relative; /* Changed from relative to allow SVG positioning */
       max-width: 800px;
       margin: 3rem auto;
     }
-    .timeline::after {
-      content: '';
+    /* REMOVED the old .timeline::after straight line */
+
+    #timeline-svg {
       position: absolute;
-      width: 2px;
-      background-color: rgba(255, 179, 71, 0.3);
       top: 0;
-      bottom: 0;
-      left: 50%;
-      margin-left: -1px;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0; /* Behind the content */
+      pointer-events: none; /* So it doesn't block mouse clicks */
     }
+    #timeline-svg .timeline-connector {
+      stroke: rgba(255, 179, 71, 0.3);
+      stroke-width: 2;
+      stroke-dasharray: 1000;
+      stroke-dashoffset: 1000;
+      animation: draw-line 2s ease-out forwards;
+    }
+    @keyframes draw-line {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
     .timeline-item {
       padding: 1rem 40px;
       position: relative;
       width: 50%;
-      box-sizing: border-box; /* This is crucial */
+      box-sizing: border-box;
+      z-index: 2; /* Ensure content is above the SVG */
     }
     .timeline-item::after {
       content: '';
@@ -128,7 +143,7 @@
       background-color: var(--brand-dark-serpent);
       border: 3px solid var(--brand-accent-saffron);
       border-radius: 50%;
-      z-index: 1;
+      z-index: 3; /* Dot is on top of everything */
     }
     .timeline-item:nth-child(odd) {
       left: 0;
@@ -139,10 +154,10 @@
       text-align: left;
     }
     .timeline-item:nth-child(odd)::after {
-      right: -8px; /* (16px width / 2) */
+      right: -8px;
     }
     .timeline-item:nth-child(even)::after {
-      left: -8px; /* (16px width / 2) */
+      left: -8px;
     }
     .timeline-content h3 {
       margin: 0 0 0.5rem 0;
@@ -180,9 +195,7 @@
     }
     
     @media (max-width: 767px) {
-      .timeline::after {
-        left: 20px;
-      }
+      /* Mobile timeline becomes a simple list */
       .timeline-item,
       .timeline-item:nth-child(even) {
         width: 100%;
@@ -199,6 +212,10 @@
       .timeline-item:nth-child(even)::after {
         left: 20px;
         transform: translate(-50%, -50%);
+      }
+      /* Hide SVG on mobile for simplicity, as the layout changes */
+      #timeline-svg {
+        display: none;
       }
     }
   </style>
@@ -261,6 +278,9 @@
             <h2 class="section-title">Our History of Excellence</h2>
             <p class="section-subtitle">Over two decades of innovation and trust.</p>
             <div class="timeline">
+                <!-- SVG Canvas for drawing the lines -->
+                <svg id="timeline-svg"></svg>
+
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <h3>2004</h3>
@@ -331,6 +351,73 @@
     </div>
   </footer>
   
-  <script src="script.js"></script>
+  <script>
+    // This script should be in your script.js file, but is included here for completeness.
+    document.addEventListener('DOMContentLoaded', function () {
+        // --- NEUROLINK TIMELINE CONNECTOR ---
+        function drawTimelineConnections() {
+            const svg = document.getElementById('timeline-svg');
+            const timeline = document.querySelector('.timeline');
+            const items = document.querySelectorAll('.timeline-item');
+            if (!svg || !timeline || items.length === 0) return;
+
+            // Clear previous lines
+            svg.innerHTML = '';
+
+            const timelineRect = timeline.getBoundingClientRect();
+            const points = [];
+
+            // Get center points of each dot
+            items.forEach(item => {
+                const dot = item.querySelector('.timeline-content'); // We use content as a reference
+                if (!dot) return;
+
+                const itemRect = item.getBoundingClientRect();
+                const dotPseudoElTop = itemRect.top + (itemRect.height / 2);
+
+                const x = timelineRect.width / 2;
+                const y = dotPseudoElTop - timelineRect.top;
+                points.push({ x, y });
+            });
+
+            // Draw lines between points
+            for (let i = 0; i < points.length - 1; i++) {
+                const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+                line.setAttribute('x1', points[i].x);
+                line.setAttribute('y1', points[i].y);
+                line.setAttribute('x2', points[i + 1].x);
+                line.setAttribute('y2', points[i + 1].y);
+                line.setAttribute('class', 'timeline-connector');
+                
+                // Set animation delay
+                line.style.animationDelay = `${i * 0.2}s`;
+
+                svg.appendChild(line);
+            }
+        }
+
+        // Initial draw and redraw on resize
+        drawTimelineConnections();
+        window.addEventListener('resize', drawTimelineConnections);
+
+
+        // --- PARTICLE BACKGROUND & OTHER SCRIPTS ---
+        // (Your existing script.js content for the background, mobile menu, etc., would go here)
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeMenuButton = document.getElementById('close-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.add('is-open');
+            });
+        }
+        if (closeMenuButton && mobileMenu) {
+            closeMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.remove('is-open');
+            });
+        }
+    });
+  </script>
 </body>
 </html>
