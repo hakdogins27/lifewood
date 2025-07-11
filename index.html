@@ -152,6 +152,7 @@
       border: 1px solid rgba(249, 247, 247, 0.1);
       transition: all 0.3s ease;
       padding: 2rem;
+      cursor: pointer; /* Make it look clickable */
     }
     .service-card:hover {
       transform: translateY(-5px);
@@ -178,6 +179,74 @@
       color: var(--brand-light-text-muted);
       line-height: 1.7;
       margin: 0;
+    }
+
+    /* ------------------- */
+    /* MODAL (POP-UP) STYLES */
+    /* ------------------- */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(19, 48, 32, 0.8);
+      backdrop-filter: blur(8px);
+      display: none; /* Hidden by default */
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .modal-overlay.active {
+      display: flex;
+      opacity: 1;
+    }
+    .modal-content {
+      background-color: var(--brand-dark-serpent);
+      padding: 2rem;
+      border-radius: 1rem;
+      border: 1px solid rgba(249, 247, 247, 0.2);
+      max-width: 600px;
+      width: 90%;
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      transform: scale(0.95);
+      transition: transform 0.3s ease;
+    }
+    .modal-overlay.active .modal-content {
+      transform: scale(1);
+    }
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      color: var(--brand-sea-salt);
+      font-size: 2rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+    #modal-image {
+      width: 100%;
+      height: auto;
+      max-height: 40vh;
+      object-fit: cover;
+      border-radius: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    #modal-title {
+      font-size: 2rem;
+      color: var(--brand-accent-saffron);
+      margin: 0 0 1rem 0;
+    }
+    #modal-description {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: var(--brand-light-text-muted);
     }
 
     /* ------------------- */
@@ -284,29 +353,33 @@
         </div>
     </section>
 
-    <!-- CORE SERVICES SECTION -->
+    <!-- CORE SERVICES SECTION - MODIFIED FOR POP-UP -->
     <section class="content-section fade-in-section section-bg">
         <div class="container text-center">
             <h2 class="section-title">Our Core Data Services</h2>
-            <p class="section-subtitle">From physical documents to digital streams, we handle the entire data journey with precision and care.</p>
+            <p class="section-subtitle">From physical documents to digital streams, we handle the entire data journey with precision and care. Click a service to learn more.</p>
             <div class="services-grid">
-                <div class="service-card">
+                <!-- 
+                  IMPORTANT: Change the data-modal-image path for each card 
+                  to the image you want to show in the pop-up.
+                -->
+                <div class="service-card" data-modal-image="img/service-data-entry.jpg">
                     <div class="service-card-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20M12 2v20"/></svg>
                     </div>
                     <h3>Data Entry & Capture</h3>
                     <p>We specialize in high-volume data entry from a variety of sources, including handwritten forms and scanned documents, ensuring over 99.9% accuracy.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card" data-modal-image="img/service-scanning.jpg">
                     <div class="service-card-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20M12 2v20"/></svg>
                     </div>
                     <h3>Document Scanning</h3>
                     <p>Our state-of-the-art facilities provide secure, high-quality scanning for documents of all types, from standard office paper to delicate historical archives.</p>
                 </div>
-                <div class="service-card">
+                <div class="service-card" data-modal-image="img/service-mailroom.jpg">
                     <div class="service-card-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20M12 2v20"/></svg>
                     </div>
                     <h3>Digital Mailroom</h3>
                     <p>Automate your incoming mail process. We receive, scan, and route your physical mail to the correct digital workflows, increasing efficiency and reducing overhead.</p>
