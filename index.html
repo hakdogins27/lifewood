@@ -216,7 +216,7 @@
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2rem;
       margin-top: 3rem;
-      text-align: left;
+      /* text-align: left; /* <<< REMOVED THIS LINE */
     }
 
     .service-card {
@@ -225,11 +225,26 @@
       border: 1px solid rgba(249, 247, 247, 0.1);
       transition: all 0.3s ease;
       overflow: hidden; /* Important: Keeps the image within the rounded corners */
+      text-align: center; /* <<< ADDED THIS LINE to center icon and text */
     }
 
     .service-card:hover {
       transform: translateY(-5px);
       border-color: var(--brand-accent-saffron);
+    }
+    
+    /* --- NEW STYLE: ADDED TO FIX ICON --- */
+    .service-card-icon {
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 70px;
+        width: 70px;
+        background-color: rgba(255, 179, 71, 0.1);
+        border-radius: 50%;
+        color: var(--brand-accent-saffron);
     }
 
     .service-card-image {
@@ -240,7 +255,7 @@
     }
 
     .service-card-content {
-      padding: 2rem; /* Padding for the text content below the image */
+      padding: 0 2rem 2rem; /* Padding for the text content below the icon/image */
     }
 
     .service-card h3 {
@@ -512,26 +527,35 @@
             <h2 class="section-title">Our Core Data Services</h2>
             <p class="section-subtitle">From physical documents to digital streams, we handle the entire data journey with precision and care.</p>
             <div class="services-grid">
+                <!-- Card 1: Fixed -->
                 <div class="service-card">
                     <div class="service-card-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
                     </div>
-                    <h3>Data Entry & Capture</h3>
-                    <p>We specialize in high-volume data entry from a variety of sources, including handwritten forms and scanned documents, ensuring over 99.9% accuracy.</p>
+                    <div class="service-card-content">
+                        <h3>Data Entry & Capture</h3>
+                        <p>We specialize in high-volume data entry from a variety of sources, including handwritten forms and scanned documents, ensuring over 99.9% accuracy.</p>
+                    </div>
                 </div>
+                <!-- Card 2: Fixed -->
                 <div class="service-card">
                     <div class="service-card-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line></svg>
                     </div>
-                    <h3>Document Scanning</h3>
-                    <p>Our state-of-the-art facilities provide secure, high-quality scanning for documents of all types, from standard office paper to delicate historical archives.</p>
+                    <div class="service-card-content">
+                        <h3>Document Scanning</h3>
+                        <p>Our state-of-the-art facilities provide secure, high-quality scanning for documents of all types, from standard office paper to delicate historical archives.</p>
+                    </div>
                 </div>
+                <!-- Card 3: Fixed -->
                 <div class="service-card">
                     <div class="service-card-icon">
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
                     </div>
-                    <h3>Digital Mailroom</h3>
-                    <p>Automate your incoming mail process. We receive, scan, and route your physical mail to the correct digital workflows, increasing efficiency and reducing overhead.</p>
+                    <div class="service-card-content">
+                        <h3>Digital Mailroom</h3>
+                        <p>Automate your incoming mail process. We receive, scan, and route your physical mail to the correct digital workflows, increasing efficiency and reducing overhead.</p>
+                    </div>
                 </div>
             </div>
         </div>
