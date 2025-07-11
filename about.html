@@ -17,17 +17,13 @@
     /* ROOT & GLOBAL STYLES */
     /* ------------------- */
     :root {
-      --brand-paper-bg: #f5eedb;
       --brand-dark-serpent: #133020;
-      --brand-castleton-green: #046241;
       --brand-accent-saffron: #FFB347;
       --brand-white: #ffffff;
       --brand-sea-salt: #F9F7F7;
       --brand-light-text-muted: rgba(249, 247, 247, 0.7);
     }
-
     html { scroll-behavior: smooth; }
-
     body {
       margin: 0;
       font-family: 'Manrope', sans-serif;
@@ -36,7 +32,6 @@
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
     }
-
     #particle-canvas {
       position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1;
     }
@@ -55,10 +50,23 @@
     .nav-link { position: relative; text-decoration: none; color: var(--brand-sea-salt); font-weight: 500; transition: color 0.3s ease; padding-bottom: 4px; }
     .nav-link:hover { color: var(--brand-accent-saffron); }
     .nav-link.active { color: var(--brand-accent-saffron); border-bottom: 2px solid var(--brand-accent-saffron); }
+    .nav-cta { display: none; }
     .mobile-menu-toggle { display: block; background: none; border: none; cursor: pointer; color: var(--brand-sea-salt); }
     .icon-menu, .icon-close { width: 2rem; height: 2rem; }
     .mobile-nav { display: none; position: fixed; inset: 0; background-color: rgba(19, 48, 32, 0.95); backdrop-filter: blur(8px); z-index: 100; }
     .mobile-nav.is-open { display: block; }
+    .mobile-nav-header { display: flex; justify-content: flex-end; padding: 1.5rem; }
+    .mobile-nav-links { display: flex; flex-direction: column; align-items: center; justify-content: center; height: calc(100% - 80px); list-style: none; padding: 0; margin: 0; gap: 2rem; }
+    .mobile-nav-link { font-family: 'Manrope', sans-serif; font-size: 1.75rem; font-weight: 600; color: var(--brand-sea-salt); text-decoration: none; }
+
+    /* ------------------- */
+    /* BUTTONS */
+    /* ------------------- */
+    .btn { display: inline-block; padding: 0.75rem 2rem; border-radius: 0.375rem; text-decoration: none; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 1rem; transition: all 0.3s ease; border: 1px solid; }
+    .btn-primary { background-color: var(--brand-accent-saffron); border-color: var(--brand-accent-saffron); color: var(--brand-dark-serpent); }
+    .btn-primary:hover { background-color: #E79651; border-color: #E79651; transform: translateY(-2px); }
+    .btn-secondary { border-color: var(--brand-accent-saffron); color: var(--brand-accent-saffron); }
+    .btn-secondary:hover { background-color: var(--brand-accent-saffron); color: var(--brand-dark-serpent); transform: translateY(-2px); }
 
     /* ------------------- */
     /* PAGE STRUCTURE & TYPOGRAPHY */
@@ -87,8 +95,6 @@
     .feature-image { flex: 1; max-width: 450px; }
     .feature-image img { width: 100%; height: auto; border-radius: 1rem; }
     .feature-content { flex: 1; text-align: left; }
-    .btn-secondary { display: inline-block; text-decoration: none; border-color: var(--brand-accent-saffron); color: var(--brand-accent-saffron); padding: 0.75rem 2rem; border-radius: 0.375rem; font-weight: 600; transition: all 0.3s ease; }
-    .btn-secondary:hover { background-color: var(--brand-accent-saffron); color: var(--brand-dark-serpent); transform: translateY(-2px); }
 
     /* --- TIMELINE STYLES - REBUILT FOR ACCURACY --- */
     .timeline {
@@ -169,6 +175,7 @@
     /* ------------------- */
     .footer { background-color: rgba(25, 25, 25, 0.7); backdrop-filter: blur(10px); border-top: 1px solid rgba(249, 247, 247, 0.1); padding: 3rem 0; text-align: center; }
     .footer-container { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
+    .footer-logo { justify-content: center; }
     .footer-text { margin: 0; font-size: 0.875rem; color: var(--brand-light-text-muted); }
     .footer-social { display: flex; gap: 1.5rem; }
     .social-link { color: var(--brand-light-text-muted); transition: color 0.3s ease; }
@@ -179,6 +186,7 @@
     /* RESPONSIVENESS */
     /* ------------------- */
     @media (min-width: 768px) {
+      .nav-cta { display: inline-block; }
       .nav-menu { display: flex; }
       .mobile-menu-toggle { display: none; }
       .footer-container { flex-direction: row; justify-content: space-between; }
@@ -265,7 +273,7 @@
       </div>
     </section>
 
-    <!-- HISTORY/TIMELINE SECTION - REBUILT HTML & CSS -->
+    <!-- HISTORY/TIMELINE SECTION - FACTUALLY CORRECTED -->
     <section class="content-section fade-in-section section-bg">
         <div class="container text-center">
             <h2 class="section-title">Our History of Excellence</h2>
@@ -279,10 +287,10 @@
                     </div>
                 </div>
 
-                <div class="timeline-item" data-year="2010">
+                <div class="timeline-item" data-year="2009">
                     <div class="timeline-dot"></div>
                     <div class="timeline-content">
-                        <p>Expanded operations globally, opening our first secure facility in Europe.</p>
+                        <p>Expanded operations globally, opening our first secure facility in the Philippines.</p>
                     </div>
                 </div>
 
@@ -336,7 +344,6 @@
             <a href="https://www.facebook.com/LifewoodPH" target="_blank" class="social-link" aria-label="Facebook">
                 <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10.01 10.01 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z"/></svg>
             </a>
-            <!-- FIX: Corrected typo in LinkedIn URL -->
             <a href="https://ph.linkedin.com/company/lifewood-data-technology-ltd" target="_blank" class="social-link" aria-label="LinkedIn">
                 <svg fill="currentColor" viewBox="0 0 24 24"><path d="M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3H19M18.5,18.5V13.2A3.26,3.26 0 0,0 15.24,9.94C14.39,9.94 13.4,10.43 13,11.25V10.13H10.13V18.5H13V13.57C13,12.8 13.09,12.03 14.17,12.03C15.24,12.03 15.24,12.97 15.24,13.64V18.5H18.5M6.88,8.56A1.68,1.68 0 0,0 8.56,6.88C8.56,6 7.78,5.2 6.88,5.2A1.68,1.68 0 0,0 5.2,6.88C5.2,7.78 6,8.56 6.88,8.56M8.27,18.5V10.13H5.5V18.5H8.27Z"/></svg>
             </a>
@@ -347,6 +354,29 @@
     </div>
   </footer>
   
-  <script src="script.js"></script>
+  <script>
+    // Simple script to make nav active and handle mobile menu
+    document.addEventListener('DOMContentLoaded', function () {
+        const currentPath = window.location.pathname.split("/").pop() || "index.html";
+        const navLinks = document.querySelectorAll('#desktop-nav .nav-link');
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === currentPath) {
+                link.classList.add('active');
+            }
+        });
+
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const closeMenuButton = document.getElementById('close-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.add('is-open');
+        });
+
+        closeMenuButton.addEventListener('click', function() {
+            mobileMenu.classList.remove('is-open');
+        });
+    });
+  </script>
 </body>
-</html>
+</html>```
