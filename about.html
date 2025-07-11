@@ -10,7 +10,7 @@
   <style>
     /* 
       This is the complete and corrected style block.
-      It includes the new styles for the SVG constellation timeline.
+      It includes the fix for the timeline AND the styles for the button.
     */
     
     /* ------------------- */
@@ -60,7 +60,7 @@
     .mobile-nav-link { font-family: 'Manrope', sans-serif; font-size: 1.75rem; font-weight: 600; color: var(--brand-sea-salt); text-decoration: none; }
 
     /* ------------------- */
-    /* BUTTONS */
+    /* BUTTONS (RESTORED) */
     /* ------------------- */
     .btn { display: inline-block; padding: 0.75rem 2rem; border-radius: 0.375rem; text-decoration: none; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 1rem; transition: all 0.3s ease; border: 1px solid; }
     .btn-primary { background-color: var(--brand-accent-saffron); border-color: var(--brand-accent-saffron); color: var(--brand-dark-serpent); }
@@ -96,50 +96,27 @@
     .feature-image img { width: 100%; height: auto; border-radius: 1rem; }
     .feature-content { flex: 1; text-align: left; }
 
-    /* --- CONSTELLATION TIMELINE STYLES --- */
+    /* --- TIMELINE STYLES - DEFINITIVE FIX --- */
     .timeline {
       position: relative;
       max-width: 800px;
       margin: 3rem auto;
     }
-    #timeline-svg {
+    .timeline::after {
+      content: '';
       position: absolute;
+      width: 2px;
+      background-color: rgba(255, 179, 71, 0.3);
       top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      pointer-events: none;
+      bottom: 0;
+      left: 50%;
+      margin-left: -1px;
     }
-    .timeline-connector-primary, .timeline-connector-secondary {
-      stroke-dasharray: 1000;
-      stroke-dashoffset: 1000;
-      animation: draw-line 2s ease-out forwards;
-    }
-    .timeline-connector-primary {
-      stroke: rgba(255, 179, 71, 0.4);
-      stroke-width: 2;
-    }
-    .timeline-connector-secondary {
-      stroke: rgba(255, 179, 71, 0.2);
-      stroke-width: 1;
-    }
-    .timeline-star {
-      fill: rgba(255, 179, 71, 0.7);
-      animation: twinkle 4s ease-in-out infinite;
-    }
-    @keyframes draw-line { to { stroke-dashoffset: 0; } }
-    @keyframes twinkle {
-      0%, 100% { opacity: 0.2; }
-      50% { opacity: 0.8; }
-    }
-
     .timeline-item {
       padding: 1rem 40px;
       position: relative;
       width: 50%;
-      box-sizing: border-box;
-      z-index: 2;
+      box-sizing: border-box; /* This is crucial */
     }
     .timeline-item::after {
       content: '';
@@ -151,12 +128,22 @@
       background-color: var(--brand-dark-serpent);
       border: 3px solid var(--brand-accent-saffron);
       border-radius: 50%;
-      z-index: 3;
+      z-index: 1;
     }
-    .timeline-item:nth-child(odd) { left: 0; text-align: right; }
-    .timeline-item:nth-child(even) { left: 50%; text-align: left; }
-    .timeline-item:nth-child(odd)::after { right: -8px; }
-    .timeline-item:nth-child(even)::after { left: -8px; }
+    .timeline-item:nth-child(odd) {
+      left: 0;
+      text-align: right;
+    }
+    .timeline-item:nth-child(even) {
+      left: 50%;
+      text-align: left;
+    }
+    .timeline-item:nth-child(odd)::after {
+      right: -8px; /* (16px width / 2) */
+    }
+    .timeline-item:nth-child(even)::after {
+      left: -8px; /* (16px width / 2) */
+    }
     .timeline-content h3 {
       margin: 0 0 0.5rem 0;
       color: var(--brand-accent-saffron);
@@ -193,14 +180,26 @@
     }
     
     @media (max-width: 767px) {
-      .timeline-item, .timeline-item:nth-child(even) {
-        width: 100%; left: 0; padding-left: 50px; padding-right: 15px;
+      .timeline::after {
+        left: 20px;
       }
-      .timeline-item:nth-child(odd), .timeline-item:nth-child(even) { text-align: left; }
-      .timeline-item::after, .timeline-item:nth-child(odd)::after, .timeline-item:nth-child(even)::after {
-        left: 20px; transform: translate(-50%, -50%);
+      .timeline-item,
+      .timeline-item:nth-child(even) {
+        width: 100%;
+        left: 0;
+        padding-left: 50px;
+        padding-right: 15px;
       }
-      #timeline-svg { display: none; }
+      .timeline-item:nth-child(odd),
+      .timeline-item:nth-child(even) {
+        text-align: left;
+      }
+      .timeline-item::after,
+      .timeline-item:nth-child(odd)::after,
+      .timeline-item:nth-child(even)::after {
+        left: 20px;
+        transform: translate(-50%, -50%);
+      }
     }
   </style>
 </head>
@@ -262,9 +261,6 @@
             <h2 class="section-title">Our History of Excellence</h2>
             <p class="section-subtitle">Over two decades of innovation and trust.</p>
             <div class="timeline">
-                <!-- SVG Canvas for drawing the lines -->
-                <svg id="timeline-svg"></svg>
-
                 <div class="timeline-item">
                     <div class="timeline-content">
                         <h3>2004</h3>
@@ -335,97 +331,6 @@
     </div>
   </footer>
   
-  <script>
-    // This script should be in your script.js file, but is included here for completeness.
-    document.addEventListener('DOMContentLoaded', function () {
-        // --- CONSTELLATION TIMELINE CONNECTOR ---
-        function drawTimelineConnections() {
-            const svg = document.getElementById('timeline-svg');
-            const timeline = document.querySelector('.timeline');
-            const items = document.querySelectorAll('.timeline-item');
-            if (!svg || !timeline || items.length === 0) return;
-
-            svg.innerHTML = ''; // Clear previous lines and stars
-            const timelineRect = timeline.getBoundingClientRect();
-            const points = [];
-
-            // Get center points of each dot pseudo-element
-            items.forEach(item => {
-                const itemRect = item.getBoundingClientRect();
-                const dotY = itemRect.top + (itemRect.height / 2) - timelineRect.top;
-                let dotX;
-                if (window.getComputedStyle(item).left !== '0px') { // Item is on the right
-                    dotX = item.offsetLeft - 8; // 8 is half the dot width
-                } else { // Item is on the left
-                    dotX = item.offsetWidth - 8;
-                }
-                points.push({ x: dotX, y: dotY });
-            });
-
-            // Draw lines and stars
-            for (let i = 0; i < points.length; i++) {
-                // Draw Primary Lines
-                if (i < points.length - 1) {
-                    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-                    line.setAttribute('x1', points[i].x);
-                    line.setAttribute('y1', points[i].y);
-                    line.setAttribute('x2', points[i + 1].x);
-                    line.setAttribute('y2', points[i + 1].y);
-                    line.setAttribute('class', 'timeline-connector-primary');
-                    line.style.animationDelay = `${i * 0.3}s`;
-                    svg.appendChild(line);
-                }
-                // Draw Secondary "Skip" Lines
-                if (i < points.length - 2) {
-                    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-                    line.setAttribute('x1', points[i].x);
-                    line.setAttribute('y1', points[i].y);
-                    line.setAttribute('x2', points[i + 2].x);
-                    line.setAttribute('y2', points[i + 2].y);
-                    line.setAttribute('class', 'timeline-connector-secondary');
-                    line.style.animationDelay = `${(i * 0.3) + 0.2}s`;
-                    svg.appendChild(line);
-                }
-                // Draw Twinkling Stars around each point
-                for(let j = 0; j < 3; j++) {
-                    const star = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-                    const angle = Math.random() * Math.PI * 2;
-                    const radius = Math.random() * 20 + 15;
-                    star.setAttribute('cx', points[i].x + Math.cos(angle) * radius);
-                    star.setAttribute('cy', points[i].y + Math.sin(angle) * radius);
-                    star.setAttribute('r', Math.random() * 1.5);
-                    star.setAttribute('class', 'timeline-star');
-                    star.style.animationDelay = `${Math.random() * 4}s`;
-                    svg.appendChild(star);
-                }
-            }
-        }
-
-        // Initial draw and redraw on resize
-        drawTimelineConnections();
-        let resizeTimer;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(drawTimelineConnections, 100);
-        });
-
-        // --- PARTICLE BACKGROUND & OTHER SCRIPTS ---
-        // (Your existing script.js content for the background, mobile menu, etc., would go here)
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const closeMenuButton = document.getElementById('close-menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        if (mobileMenuButton && mobileMenu) {
-            mobileMenuButton.addEventListener('click', function() {
-                mobileMenu.classList.add('is-open');
-            });
-        }
-        if (closeMenuButton && mobileMenu) {
-            closeMenuButton.addEventListener('click', function() {
-                mobileMenu.classList.remove('is-open');
-            });
-        }
-    });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
