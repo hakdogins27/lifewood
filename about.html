@@ -6,8 +6,212 @@
   <title>About Lifewood - Global Data Solutions</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* 
+      NOTE: For a complete solution, these styles are embedded. 
+      You should copy the relevant sections into your main style.css file.
+    */
+    
+    /* ------------------- */
+    /* ROOT & GLOBAL STYLES */
+    /* ------------------- */
+    :root {
+      --brand-paper-bg: #f5eedb;
+      --brand-dark-serpent: #133020;
+      --brand-castleton-green: #046241;
+      --brand-accent-saffron: #FFB347;
+      --brand-white: #ffffff;
+      --brand-sea-salt: #F9F7F7;
+      --brand-light-text-muted: rgba(249, 247, 247, 0.7);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: 'Manrope', sans-serif;
+      background-color: var(--brand-dark-serpent);
+      color: var(--brand-sea-salt);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    #particle-canvas {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1;
+    }
+
+    /* ------------------- */
+    /* HEADER & NAVIGATION */
+    /* ------------------- */
+    .header {
+      background-color: rgba(25, 25, 25, 0.7); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 50; border-bottom: 1px solid rgba(249, 247, 247, 0.1);
+    }
+    .navbar { display: flex; justify-content: space-between; align-items: center; height: 80px; }
+    .logo { display: flex; align-items: center; gap: 0.5rem; text-decoration: none; color: var(--brand-accent-saffron); }
+    .logo-icon { height: 2rem; width: auto; }
+    .logo-text { font-family: 'Manrope', sans-serif; font-size: 1.875rem; font-weight: 800; letter-spacing: -0.5px; color: #f5eedb; }
+    .nav-menu { display: none; list-style: none; margin: 0; padding: 0; align-items: center; gap: 2rem; }
+    .nav-link { position: relative; text-decoration: none; color: var(--brand-sea-salt); font-weight: 500; transition: color 0.3s ease; padding-bottom: 4px; }
+    .nav-link:hover { color: var(--brand-accent-saffron); }
+    .nav-link.active { color: var(--brand-accent-saffron); border-bottom: 2px solid var(--brand-accent-saffron); }
+    .mobile-menu-toggle { display: block; background: none; border: none; cursor: pointer; color: var(--brand-sea-salt); }
+    .icon-menu, .icon-close { width: 2rem; height: 2rem; }
+    .mobile-nav { display: none; position: fixed; inset: 0; background-color: rgba(19, 48, 32, 0.95); backdrop-filter: blur(8px); z-index: 100; }
+    .mobile-nav.is-open { display: block; }
+
+    /* ------------------- */
+    /* PAGE STRUCTURE & TYPOGRAPHY */
+    /* ------------------- */
+    .container { max-width: 1200px; margin-inline: auto; padding-inline: 1.5rem; }
+    main { padding-top: 80px; }
+    section { padding-block: clamp(3rem, 8vw, 6rem); text-align: center; position: relative; }
+    .content-section { padding-top: 0; }
+    .section-bg { background-color: #1a2c23; border-top: 1px solid rgba(249, 247, 247, 0.1); border-bottom: 1px solid rgba(249, 247, 247, 0.1); }
+    .page-header-section { padding-bottom: 2rem; padding-top: clamp(2rem, 5vw, 4rem); }
+    .page-title, .section-title { font-family: 'Manrope', sans-serif; font-weight: 800; color: var(--brand-sea-salt); }
+    .page-title { font-size: clamp(2.5rem, 6vw, 3.5rem); margin: 0; }
+    .section-title { font-size: clamp(2rem, 5vw, 2.5rem); margin-bottom: 1rem; }
+    .page-subtitle, .section-subtitle { font-size: 1.25rem; color: var(--brand-light-text-muted); max-width: 48rem; margin-inline: auto; line-height: 1.7; font-weight: 400; }
+    
+    /* ------------------- */
+    /* CONTENT PAGES */
+    /* ------------------- */
+    .content-container { max-width: 800px; text-align: left; }
+    .content-block { margin-bottom: 2rem; }
+    .content-block h2 { font-size: 1.75rem; color: var(--brand-accent-saffron); margin: 0 0 1rem 0; font-weight: 700; }
+    .content-block p { color: var(--brand-light-text-muted); line-height: 1.7; }
+
+    /* --- FEATURE SECTION STYLES --- */
+    .feature-section { display: flex; flex-direction: column; align-items: center; gap: 2rem; text-align: center; }
+    .feature-image { flex: 1; max-width: 450px; }
+    .feature-image img { width: 100%; height: auto; border-radius: 1rem; }
+    .feature-content { flex: 1; text-align: left; }
+    .btn-secondary { display: inline-block; text-decoration: none; border-color: var(--brand-accent-saffron); color: var(--brand-accent-saffron); padding: 0.75rem 2rem; border-radius: 0.375rem; font-weight: 600; transition: all 0.3s ease; }
+    .btn-secondary:hover { background-color: var(--brand-accent-saffron); color: var(--brand-dark-serpent); transform: translateY(-2px); }
+
+    /* --- TIMELINE STYLES - REBUILT FOR ACCURACY --- */
+    .timeline {
+      margin-top: 3rem;
+      position: relative;
+      max-width: 800px;
+      margin-inline: auto;
+    }
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 2px;
+      background-color: rgba(255, 179, 71, 0.3); /* The center line */
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    .timeline-item {
+      padding: 2rem 0;
+      position: relative;
+    }
+    .timeline-content {
+      width: calc(50% - 40px);
+      color: var(--brand-light-text-muted);
+      line-height: 1.6;
+    }
+    .timeline-item:nth-child(odd) .timeline-content {
+      float: left;
+      text-align: right;
+    }
+    .timeline-item:nth-child(even) .timeline-content {
+      float: right;
+      text-align: left;
+    }
+    .timeline-item::after {
+      content: "";
+      display: table;
+      clear: both;
+    }
+    
+    .timeline-item::before {
+      content: attr(data-year);
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: calc(50% - 40px);
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--brand-accent-saffron);
+    }
+    .timeline-item:nth-child(odd)::before {
+      right: 0;
+      text-align: left;
+      padding-left: 40px;
+    }
+    .timeline-item:nth-child(even)::before {
+      left: 0;
+      text-align: right;
+      padding-right: 40px;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 12px;
+      height: 12px;
+      background-color: var(--brand-dark-serpent);
+      border: 3px solid var(--brand-accent-saffron);
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    /* ------------------- */
+    /* FOOTER */
+    /* ------------------- */
+    .footer { background-color: rgba(25, 25, 25, 0.7); backdrop-filter: blur(10px); border-top: 1px solid rgba(249, 247, 247, 0.1); padding: 3rem 0; text-align: center; }
+    .footer-container { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
+    .footer-text { margin: 0; font-size: 0.875rem; color: var(--brand-light-text-muted); }
+    .footer-social { display: flex; gap: 1.5rem; }
+    .social-link { color: var(--brand-light-text-muted); transition: color 0.3s ease; }
+    .social-link:hover { color: var(--brand-accent-saffron); }
+    .social-link svg { width: 1.5rem; height: 1.5rem; }
+    
+    /* ------------------- */
+    /* RESPONSIVENESS */
+    /* ------------------- */
+    @media (min-width: 768px) {
+      .nav-menu { display: flex; }
+      .mobile-menu-toggle { display: none; }
+      .footer-container { flex-direction: row; justify-content: space-between; }
+      .feature-section { flex-direction: row; text-align: left; gap: 4rem; }
+    }
+    
+    /* Responsive timeline for mobile */
+    @media (max-width: 767px) {
+        .timeline::after { left: 20px; }
+        .timeline-item { padding: 1rem 0; }
+        .timeline-item:nth-child(odd) .timeline-content,
+        .timeline-item:nth-child(even) .timeline-content {
+            float: none;
+            width: calc(100% - 50px);
+            text-align: left;
+            margin-left: 50px;
+        }
+        .timeline-item::before, .timeline-item:nth-child(odd)::before, .timeline-item:nth-child(even)::before {
+            position: relative;
+            transform: none;
+            top: auto;
+            left: auto;
+            right: auto;
+            width: auto;
+            display: block;
+            text-align: left;
+            padding: 0;
+            margin-left: 50px;
+            margin-bottom: 0.5rem;
+        }
+        .timeline-dot { left: 20px; }
+    }
+  </style>
 </head>
 <body>
   <!-- Canvas for the AI background animation -->
@@ -61,7 +265,7 @@
       </div>
     </section>
 
-    <!-- HISTORY/TIMELINE SECTION - With Corrected Information -->
+    <!-- HISTORY/TIMELINE SECTION - REBUILT HTML & CSS -->
     <section class="content-section fade-in-section section-bg">
         <div class="container text-center">
             <h2 class="section-title">Our History of Excellence</h2>
@@ -94,8 +298,7 @@
             </div>
         </div>
     </section>
-    <!-- END OF NEW SECTION -->
-
+    
     <!-- NEW GLOBAL OPERATIONS SECTION -->
     <section class="content-section fade-in-section">
         <div class="container feature-section">
@@ -110,8 +313,6 @@
             </div>
         </div>
     </section>
-    <!-- END OF NEW SECTION -->
-
   </main>
 
   <footer class="footer">
@@ -130,6 +331,7 @@
             <a href="https://www.facebook.com/LifewoodPH" target="_blank" class="social-link" aria-label="Facebook">
                 <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96A10.01 10.01 0 0 0 22 12.06C22 6.53 17.5 2.04 12 2.04Z"/></svg>
             </a>
+            <!-- FIX: Corrected typo in LinkedIn URL -->
             <a href="https://ph.linkedin.com/company/lifewood-data-technology-ltd" target="_blank" class="social-link" aria-label="LinkedIn">
                 <svg fill="currentColor" viewBox="0 0 24 24"><path d="M19,3A2,2 0 0,1 21,5V19A2,2 0 0,1 19,21H5A2,2 0 0,1 3,19V5A2,2 0 0,1 5,3H19M18.5,18.5V13.2A3.26,3.26 0 0,0 15.24,9.94C14.39,9.94 13.4,10.43 13,11.25V10.13H10.13V18.5H13V13.57C13,12.8 13.09,12.03 14.17,12.03C15.24,12.03 15.24,12.97 15.24,13.64V18.5H18.5M6.88,8.56A1.68,1.68 0 0,0 8.56,6.88C8.56,6 7.78,5.2 6.88,5.2A1.68,1.68 0 0,0 5.2,6.88C5.2,7.78 6,8.56 6.88,8.56M8.27,18.5V10.13H5.5V18.5H8.27Z"/></svg>
             </a>
