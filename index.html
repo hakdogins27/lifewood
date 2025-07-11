@@ -226,6 +226,9 @@
       overflow: hidden;
       text-align: center;
       padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     .service-card:hover {
@@ -233,21 +236,8 @@
       border-color: var(--brand-accent-saffron);
     }
     
-    .service-card-icon {
-        margin-top: 1rem;
-        margin-bottom: 1.5rem;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        height: 60px;
-        width: 60px;
-        background-color: rgba(255, 179, 71, 0.1);
-        border-radius: 50%;
-        color: var(--brand-accent-saffron);
-    }
-
     .service-card-content {
-      padding: 0 1rem 1rem;
+      padding: 1rem;
     }
 
     .service-card h3 {
@@ -474,8 +464,8 @@
     <section id="home" class="hero-section">
       <div class="container hero-container">
         <div class="hero-content">
-            <h1 id="hero-title" class="hero-title">Harnessing the Potential of AI</h1>
-            <p class="hero-subtitle">At Lifewood, we empower businesses to realise the transformative potential of AI: bringing big data to life and launching new ways of thinking, innovating, and doing. This is the next level of AI's potential, uncovering new methods and insights to reveal unexpected directions and possibilities. [1]</p>
+            <h1 id="hero-title" class="hero-title">Unlock AI's True Power</h1>
+            <p class="hero-subtitle">We help organizations leverage the full capabilities of artificial intelligence, transforming vast datasets into actionable insights. By revealing new patterns and creating novel approaches, we enable innovation and open up unforeseen opportunities.</p>
             <a href="services.html" class="btn btn-primary">Our Solutions</a>
         </div>
       </div>
@@ -483,13 +473,13 @@
 
     <section class="content-section fade-in-section section-bg">
         <div class="container text-center">
-            <h2 class="section-title">Transforming Data on a Global Scale</h2>
-            <p class="section-subtitle">Lifewood, active in 16 countries, drives ever forward, igniting a culture of innovation and creating dynamic opportunities and prosperous communities around the world. [1]</p>
+            <h2 class="section-title">Our Global Impact and Expertise</h2>
+            <p class="section-subtitle">With a presence in 16 nations, Lifewood fosters a worldwide culture of innovation, creating dynamic opportunities and contributing to thriving communities.</p>
             <div class="stats-grid">
-                <div class="stat-card"><p class="stat-number">34,738</p><p class="stat-label">Devoted Specialists</p></div>
-                <div class="stat-card"><p class="stat-number">25</p><p class="stat-label">Delivery Sites</p></div>
-                <div class="stat-card"><p class="stat-number">16</p><p class="stat-label">Countries on 4 Continents</p></div>
-                <div class="stat-card"><p class="stat-number">50+</p><p class="stat-label">Language Capabilities</p></div>
+                <div class="stat-card"><p class="stat-number">34,738</p><p class="stat-label">Dedicated Experts</p></div>
+                <div class="stat-card"><p class="stat-number">25</p><p class="stat-label">Secure Facilities</p></div>
+                <div class="stat-card"><p class="stat-number">16</p><p class="stat-label">Countries Across 4 Continents</p></div>
+                <div class="stat-card"><p class="stat-number">50+</p><p class="stat-label">Languages Supported</p></div>
             </div>
         </div>
     </section>
@@ -497,37 +487,37 @@
     <!-- CORE SERVICES SECTION -->
     <section class="content-section fade-in-section">
         <div class="container text-center">
-            <h2 class="section-title">A Wide Variety of Services for AI Training Data</h2>
-            <p class="section-subtitle">No matter the industry, size, or the type of data involved, our solutions are capable of satisfying any AI, data processing, or business requirements. [1]</p>
+            <h2 class="section-title">Comprehensive Services for AI Data</h2>
+            <p class="section-subtitle">Our adaptable solutions are designed to meet diverse AI, data processing, and business needs, regardless of industry, scale, or data type.</p>
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-card-content">
                         <h3>Data Acquisition</h3>
-                        <p>We provide comprehensive data solutions for acquiring, processing, and managing diverse datasets to fuel the training and evolution of artificial intelligence. [1]</p>
+                        <p>Our end-to-end solutions cover the acquisition, processing, and management of varied datasets to power the development of advanced AI systems.</p>
                     </div>
                 </div>
                 <div class="service-card">
                     <div class="service-card-content">
                         <h3>Data Collection</h3>
-                        <p>Our services include audio, music, and video categorization, classification, labelling, tagging and broadcast subtitles. [1]</p>
+                        <p>We offer specialized data collection, including media categorization, classification, tagging, and broadcast subtitling.</p>
                     </div>
                 </div>
                 <div class="service-card">
                     <div class="service-card-content">
                         <h3>Data Annotation</h3>
-                        <p>With our in-depth, high quality library of services, we accelerate your organization's cognitive systems. [1]</p>
+                        <p>Our high-quality annotation services provide the detailed labeling needed to accelerate the performance of your cognitive systems.</p>
                     </div>
                 </div>
                 <div class="service-card">
                     <div class="service-card-content">
                         <h3>Data Curation</h3>
-                        <p>We sift, select, and index data to ensure reliability, accessibility and ease of classification for business decisions, research, and more. [1]</p>
+                        <p>We meticulously sort, select, and organize data to guarantee it is reliable, accessible, and perfectly structured for any application.</p>
                     </div>
                 </div>
                 <div class="service-card">
                     <div class="service-card-content">
                         <h3>Data Validation</h3>
-                        <p>We verify that data conforms to predefined standards, ensuring the information is trustworthy and fit for its intended purpose. [1]</p>
+                        <p>Our validation process confirms that all data meets strict quality standards, ensuring it is accurate and ready for its intended use.</p>
                     </div>
                 </div>
             </div>
@@ -540,8 +530,8 @@
                 <img src="img/Genea.png" alt="Archival documents and historical records for genealogy research">
             </div>
             <div class="feature-content">
-                <h2 class="section-title" style="text-align: left;">Genealogy Powered by AI</h2>
-                <p class="section-subtitle" style="text-align: left; max-width: none;">Powered by AI, Lifewood processes genealogical material at speed and scale to conserve and illuminate family histories and national archives. [1] Lifewood started with genealogy data as its core business, and over 18 years we have accumulated vast knowledge in diverse types of genealogy indexing. [1]</p>
+                <h2 class="section-title" style="text-align: left;">Advancing Genealogical Research with AI</h2>
+                <p class="section-subtitle" style="text-align: left; max-width: none;">We leverage AI to process historical and genealogical records with exceptional speed and scale, preserving and shedding light on family histories and national archives. With over 18 years of experience rooted in genealogy data, we have developed deep expertise in handling diverse and complex historical documents.</p>
                 <a href="services.html" class="btn btn-secondary" style="margin-top: 1rem;">Explore Our Services</a>
             </div>
         </div>
